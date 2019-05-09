@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: center;
+  width: 100.00%;
+  display: none; /* Hide all elements by default */
+}
+
+/* Content */
+.content {
+  background-color: white;
+  padding: 10px;
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+
+.myButton {
+  -moz-box-shadow:inset 0px 0px 15px 3px #8286ff;
+  -webkit-box-shadow:inset 0px 0px 15px 3px #8286ff;
+  box-shadow:inset 0px 0px 15px 3px #8286ff;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #8286ff), color-stop(1, #415989));
+  background:-moz-linear-gradient(top, #8286ff 5%, #415989 100%);
+  background:-webkit-linear-gradient(top, #2e466e 5%, #415989 100%);
+  background:-o-linear-gradient(top, #8286ff 5%, #415989 100%);
+  background:-ms-linear-gradient(top, #8286ff 5%, #415989 100%);
+  background:linear-gradient(to bottom, #8286ff 5%, #415989 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e466e', endColorstr='#415989',GradientType=0);
+  background-color:#8286ff;
+  -moz-border-radius:17px;
+  -webkit-border-radius:17px;
+  border-radius:17px;
+  border:1px solid #1f2f47;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:15px;
+  padding:6px 13px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #263666;
+}
+.myButton:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #415989), color-stop(1, #8286ff));
+  background:-moz-linear-gradient(top, #415989 5%, #8286ff 100%);
+  background:-webkit-linear-gradient(top, #415989 5%, #8286ff 100%);
+  background:-o-linear-gradient(top, #415989 5%, #8286ff 100%);
+  background:-ms-linear-gradient(top, #415989 5%, #8286ff 100%);
+  background:linear-gradient(to bottom, #415989 5%, #8286ff 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#415989', endColorstr='#8286ff',GradientType=0);
+  background-color:#415989;
+}
+.myButton:active {
+  position:relative;
+  top:1px;
+}
+.btn1 {
+  background: #7c32ff;
+  padding: 10px 30px;
+  border-radius: 10px;
+  line-height: 30px;
+  border: 1px solid #7c32ff;
+  color: #fff;
+  transition: 0.2s;
+  float: right;
+}
+.btn1:hover {
+  background: transparent;
+  color: #000;
+}
+.img1 {
+  width: 20%;
+}
+
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 90%;
+  max-width: 1100px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)}
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #40e0d0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
