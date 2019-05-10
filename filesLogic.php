@@ -19,6 +19,8 @@ if (mysqli_connect_error()) {
     // name of the uploaded file
     $filename = $_FILES['myfile']['name'];
     $filename=str_replace('_',' ',$filename);
+    $filename = stripcslashes($filename);
+    $filename = mysqli_real_escape_string($conn, $filename);
 
     // get the file extension
     $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION)); // getting the extension of the file
@@ -33,7 +35,7 @@ if (mysqli_connect_error()) {
     // hased name of the file for easier storage = hash(filename + current time & date)
     $filehash = md5($filename . '.'. $extension . date('Y/m/d H:i:s'));
 
-    // user's description of the file
+    // sanitize user's description of the file
     $filedesc = trim($filedesc); // trim any white spaces and tab characters before and after the file description
     $filedesc = stripcslashes($filedesc);
     $filedesc = mysqli_real_escape_string($conn, $filedesc);
@@ -46,6 +48,7 @@ if (mysqli_connect_error()) {
     $file = $_FILES['myfile']['tmp_name'];
     $size = $_FILES['myfile']['size'];
 
+    // Check valid file extension
     if (!in_array($extension, ['txt', 'jpg', 'png', 'mp3', 'pdf', 'docx'])) {
       //echo "You file extension must be .txt, .jpg, .png, .mp3, .pdf or .docx";
       $message = "You file extension must be .txt, .jpg, .png, .mp3, .pdf or .docx";

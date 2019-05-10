@@ -14,20 +14,20 @@ if (mysqli_connect_error()) {
   $name = trim($_POST['name']);
   $username = trim(strtolower($_POST['username']));
   $password = $_POST['password'];
-  //$name = mysqli_real_escape_string($conn, stripcslashes(trim($_POST['name']))); // Full name
-  //$username = mysqli_real_escape_string($conn, stripcslashes(trim(strtolower($_POST['username'])))); // username
-  //$password = mysqli_real_escape_string($conn, stripcslashes($_POST['password'])); // password
+
+  //Server side input validation via regex in IF statement
   if (!preg_match("/[A-Za-z\s]+/", $name) || !preg_match("/^(?=.{6,15}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/", $username) || !preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[ #?!@$%^*-]).{8,}$/", $password)) { // Check if full name contains numbers
     echo "<script type='text/javascript'>
     location='signup.html';
     alert('Invalid characters for one the fields');
     </script>";
   } else {
+
     // Sanitize full name, username and password
     $name = mysqli_real_escape_string($conn, stripcslashes($username)); // Full name
     $username = mysqli_real_escape_string($conn, stripcslashes($username)); // username
     $password = mysqli_real_escape_string($conn, stripcslashes($password)); // password
-    
+
     $email = trim($_POST['email']);
     $repass = stripcslashes($_POST['repeat-pass']);
     $password = md5($password);
