@@ -42,7 +42,7 @@ if (mysqli_connect_error()) {
 
     // destination of the file on the server
     //$destination = 'uploads/' . $username .'/'. $filename;
-    $destination = '/Users/khangdang/Sites/uploads/' . basename($filehash) . '.' . $extension;
+    $destination = $pathToUpload . basename($filehash) . '.' . $extension;
 
     // the physical file on a temporary uploads directory on the server
     $file = $_FILES['myfile']['tmp_name'];
@@ -86,7 +86,7 @@ if (mysqli_connect_error()) {
     $result = mysqli_query($conn, $sql);
 
     $file = mysqli_fetch_assoc($result);
-    $filepath = '/Users/khangdang/Sites/uploads/' . $file['file_hash'] . '.' . $file['file_type'];
+    $filepath = $pathToUpload . $file['file_hash'] . '.' . $file['file_type'];
 
     if (file_exists($filepath) && (strcasecmp($username, $file['username']) == 0)) {
       header('Content-Description: File Transfer');
@@ -97,8 +97,8 @@ if (mysqli_connect_error()) {
       header('Expires: 0');
       header('Cache-Control: must-revalidate');
       header('Pragma: public');
-      header('Content-Length: ' . filesize('/Users/khangdang/Sites/uploads/' . $file['file_hash'] . '.' . $file['file_type']));
-      readfile('/Users/khangdang/Sites/uploads/' . $file['file_hash']. '.' . $file['file_type']);
+      header('Content-Length: ' . filesize($pathToUpload . $file['file_hash'] . '.' . $file['file_type']));
+      readfile($pathToUpload . $file['file_hash']. '.' . $file['file_type']);
 
       // Now update downloads count
       $newCount = $file['downloads'] + 1;
@@ -120,7 +120,7 @@ if (mysqli_connect_error()) {
     $sql = "SELECT * FROM files WHERE file_id=$id";
     $result = mysqli_query($conn, $sql);
     $file = mysqli_fetch_assoc($result);
-    $filepath = '/Users/khangdang/Sites/uploads/' . $file['file_hash'] . '.' . $file['file_type'];
+    $filepath = $pathToUpload . $file['file_hash'] . '.' . $file['file_type'];
     if (file_exists($filepath) && (strcasecmp($username, $file['username']) == 0)) {
       $sql = "DELETE FROM files WHERE file_id=$id";
       $result = mysqli_query($conn, $sql);

@@ -21,7 +21,7 @@ if (isset($_POST['delete']) && isset($_POST['id'])) {
   $sql = "SELECT * FROM files WHERE file_id=$id";
   $result = mysqli_query($conn, $sql);
   $file = mysqli_fetch_assoc($result);
-  $filepath = '/Users/khangdang/Sites/uploads/' . $file['file_hash'] . '.' . $file['file_type'];
+  $filepath = $pathToUpload . $file['file_hash'] . '.' . $file['file_type'];
   if (file_exists($filepath) && (strcasecmp($username, $file['username']) == 0)) {
     $sql = "DELETE FROM files WHERE file_id=$id";
     $result = mysqli_query($conn, $sql);
@@ -44,7 +44,7 @@ if (isset($_POST['download']) && isset($_POST['id'])) {
   $sql = "SELECT * FROM files WHERE file_id=$id";
   $result = mysqli_query($conn, $sql);
   $file = mysqli_fetch_assoc($result);
-  $filepath = '/Users/khangdang/Sites/uploads/' . $file['file_hash'] . '.' . $file['file_type'];
+  $filepath = $pathToUpload . $file['file_hash'] . '.' . $file['file_type'];
 
   // Force download
   if (file_exists($filepath)) {
@@ -56,8 +56,8 @@ if (isset($_POST['download']) && isset($_POST['id'])) {
     header('Expires: 0');
     header('Cache-Control: must-revalidate');
     header('Pragma: public');
-    header('Content-Length: ' . filesize('/Users/khangdang/Sites/uploads/' . $file['file_hash'] . '.' . $file['file_type']));
-    readfile('/Users/khangdang/Sites/uploads/' . $file['file_hash']. '.' . $file['file_type']);
+    header('Content-Length: ' . filesize($pathToUpload . $file['file_hash'] . '.' . $file['file_type']));
+    readfile($pathToUpload . $file['file_hash']. '.' . $file['file_type']);
 
     // Now update downloads count
     $newCount = $file['downloads'] + 1;

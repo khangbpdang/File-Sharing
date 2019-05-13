@@ -409,54 +409,7 @@ function trimSentence($str){
 						</a>
 					</li>
 				<?php endforeach;?>
-				<!--
-				<li>
-				<a href="#" class="justify-content-between align-items-center d-flex">
-				<p class="title"><img style="margin-left: auto; margin-right: auto; object-fit: cover;"  src="img/blog/c1.jpg" width="80" height="80"/>
-				<div class="divcust"> Katie Johnson <br>
-				<button type="submit" name="follow" class="myButton">Unfollow</button>
-			</div>
-		</p>
-
-	</a>
-</li>
-
-
-<li>
-<a href="#" class="justify-content-between align-items-center d-flex">
-<p class="title"><img src="img/blog/user3.png" width="60" height="60">Nurul Haque </p>
-</a>
-</li>
-
-<li>
-<a href="#" class="justify-content-between align-items-center d-flex">
-<p class="title"><img src="img/blog/user3.png" width="80" height="80">Khang Dang </p>
-</a>
-</li>
-
-<li>
-<a href="#" class="justify-content-between align-items-center d-flex">
-<p class="title"><img src="img/blog/user3.png" width="60" height="60">Nurul Haque </p>
-</a>
-</li>
-
-<li>
-<a href="#" class="justify-content-between align-items-center d-flex">
-<p class="title"><img src="img/blog/user3.png" width="80" height="80">Khang Dang </p>
-</a>
-</li>
-<li>
-<a href="#" class="justify-content-between align-items-center d-flex">
-<p class="title"><img src="img/blog/user3.png" width="60" height="60">Nurul Haque </p>
-</a>
-</li>
-
-<li>
-<a href="#" class="justify-content-between align-items-center d-flex">
-<p class="title"><img src="img/blog/user3.png" width="80" height="80">Khang Dang </p>
-</a>
-</li>
--->
+				
 
 </ul>
 </div>

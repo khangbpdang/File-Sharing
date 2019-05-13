@@ -54,7 +54,7 @@ if (mysqli_connect_error()) {
 
     // destination of the file on the server
     //$destination = 'uploads/' . $username .'/'. $filename;
-    $destination = '/Users/khangdang/Sites/profilepics/' . basename($username) . '.' . $extension;
+    $destination = $pathToProfile . basename($username) . '.' . $extension;
 
     // the physical file on a temporary uploads directory on the server
     $filetmp = $_FILES['myfile']['tmp_name'];
@@ -73,7 +73,7 @@ if (mysqli_connect_error()) {
       $select = "SELECT * FROM users WHERE username = '$username'";
       $res = mysqli_query($conn, $select);
 			$profile = mysqli_fetch_assoc($res);
-      $filepath = '/Users/khangdang/Sites/profilepics/' . basename($profile['prof_name_hash']). '.' . $profile['prof_file_type'];
+      $filepath = $pathToProfile . basename($profile['prof_name_hash']). '.' . $profile['prof_file_type'];
       if (file_exists($filepath)) {
         unlink($destination);
       } else {

@@ -29,7 +29,7 @@ if (isset($_POST['acc_del_btn']) && isset($_POST['user'])) {
     // retrieve the file id from each row
     $id = $file['file_id'];
     // file path of each file
-    $filepath = '/Users/khangdang/Sites/uploads/' . $file['file_hash'] . '.' . $file['file_type'];
+    $filepath = $pathToUpload . $file['file_hash'] . '.' . $file['file_type'];
     if (file_exists($filepath) && (strcasecmp($username, $file['username']) == 0)) {
 
       //remove each file from database
@@ -46,7 +46,7 @@ if (isset($_POST['acc_del_btn']) && isset($_POST['user'])) {
   // Remove profile pic in profilepics directory
   $result5 = mysqli_query($conn, $sql5);
   $profile = mysqli_fetch_assoc($result5);
-  $profilepath = '/Users/khangdang/Sites/profilepics/' . $profile['prof_name_hash'] . '.' . $profile['prof_file_type'];
+  $profilepath = $pathToProfile . $profile['prof_name_hash'] . '.' . $profile['prof_file_type'];
   //if (file_exists($filepath) && (strcasecmp($username, $profile['username']) == 0)) {
   unlink($profilepath);
   //}
