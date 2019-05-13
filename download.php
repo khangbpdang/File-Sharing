@@ -4,6 +4,10 @@ if(!isset($_SESSION["username"])) {
   header("location:login.html");
 }
 include 'filesLogic.php';
+
+/* parameter: a String
+ * return: a trimmed String
+*/
 function trimSentence($str){
   if (strlen($str) > 140)
   {

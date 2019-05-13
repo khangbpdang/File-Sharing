@@ -3,7 +3,8 @@ SESSION_START();
 if(!isset($_SESSION["username"])) {
 	header("location:login.html");
 }
-$conn = mysqli_connect('127.0.0.1', 'root', 'Overdrive08', 'mytestdb');
+//connect to database
+require_once('connect_db.php');
 if (mysqli_connect_error()) {
 	die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
 } else {
@@ -419,19 +420,7 @@ if (mysqli_connect_error()) {
 			<button class="btncust" onclick="filterSelection('documents')"> <p class="p1"><img src="img/bullet.png" alt=""> Documents</p></button> <br>
 			<button class="btncust" onclick="filterSelection('images')"> <p class="p1"><img src="img/bullet.png" alt=""> Images</p></button> <br>
 			<!--<button class="btncust" onclick="filterSelection('pdf')"> <p class="p1"><img src="img/bullet.png" alt=""> PDF</p></button> <br>-->
-			<script>
-			// Add active class to the current button (highlight it)
-			var btnContainer = document.getElementById("myBtnContainer");
-			var btns = btnContainer.getElementsByClassName("btncust");
-			for (var i = 0; i < btns.length; i++) {
-				btns[i].addEventListener("click", function(){
-					var current = document.getElementsByClassName("active");
-					current[0].className = current[0].className.replace(" active", "");
-					this.className += " active";
 
-				});
-			}
-			</script>
 		</div>
 	</div>
 
@@ -455,6 +444,8 @@ if (mysqli_connect_error()) {
 </div>
 <!-- Start main body Area -->
 
+
+
 <!-- start footer Area -->
 <footer class="footer-area section-gap">
 	<div class="container box_1170">
@@ -467,46 +458,9 @@ if (mysqli_connect_error()) {
 	</div>
 </footer>
 <!-- End footer Area -->
-<script>
-filterSelection("all")
-function filterSelection(c) {
-	var x, i;
-	x = document.getElementsByClassName("column");
-	if (c == "all") c = "";
-	for (i = 0; i < x.length; i++) {
-		w3RemoveClass(x[i], "show");
-		if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-
-	}
 
 
-}
-
-function w3AddClass(element, name) {
-	var i, arr1, arr2;
-	arr1 = element.className.split(" ");
-	arr2 = name.split(" ");
-	for (i = 0; i < arr2.length; i++) {
-		if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
-	}
-}
-
-function w3RemoveClass(element, name) {
-	var i, arr1, arr2;
-
-	arr1 = element.className.split(" ");
-	arr2 = name.split(" ");
-	for (i = 0; i < arr2.length; i++) {
-		while (arr1.indexOf(arr2[i]) > -1) {
-			arr1.splice(arr1.indexOf(arr2[i]), 1);
-		}
-	}
-	element.className = arr1.join(" ");
-}
-
-
-
-</script>
+<script src="js/filter.js"></script>
 <script src="js/vendor/jquery-2.2.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 crossorigin="anonymous"></script>

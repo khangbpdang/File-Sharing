@@ -3,7 +3,7 @@ SESSION_START();
 if(!isset($_SESSION["username"])) {
 	header("location:login.html");
 }
-$conn = mysqli_connect('127.0.0.1', 'root', 'Overdrive08', 'mytestdb');
+require_once('connect_db.php');
 if (mysqli_connect_error()) {
 	die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
 } else {
@@ -110,20 +110,20 @@ if (mysqli_connect_error()) {
 
 	<div class="container-contact100 ">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" action="contact-handler.php" method="POST">
+			<form class="contact100-form validate-form" action="contact_handler.php" method="POST">
 				<span class="contact100-form-title">
 					Contact Us!
 				</span>
 
 				<div class="wrap-input100 validate-input" data-validate="Name is required">
 					<span class="label-input100">Your Name</span>
-					<input class="input100" type="text" name="name" placeholder="Enter your name">
+					<input class="input100" type="text" name="name" placeholder="Enter your name" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" pattern="[A-Za-z\s]+" title="Only alphabet characters and spaces are allowed">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">Email</span>
-					<input class="input100" type="text" name="email" placeholder="Enter your email address">
+					<input class="input100" type="email" name="email" placeholder="Enter your email address">
 					<span class="focus-input100"></span>
 				</div>
 
@@ -171,7 +171,7 @@ if (mysqli_connect_error()) {
 	<!--===============================================================================================-->
 
 	<!--===============================================================================================-->
-	<script src="js/main copy.js"></script>
+
 
 
 

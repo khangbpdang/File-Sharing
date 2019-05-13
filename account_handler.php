@@ -8,7 +8,7 @@ if(!isset($_SESSION["username"])) {
 $username = $_SESSION["username"];
 
 // connect to the database
-$conn = mysqli_connect('127.0.0.1', 'root', 'Overdrive08', 'mytestdb');
+require_once('connect_db.php');
 
 // select all files from the database that belong to the user
 $sql = "SELECT * FROM files WHERE username='$username'";
@@ -40,10 +40,7 @@ if (isset($_POST['acc_del_btn']) && isset($_POST['user'])) {
       //remove comments of each file from database
       $sql12 = "DELETE FROM comment WHERE file_id=$id";
       $result12 = mysqli_query($conn, $sql12);
-
     }
-
-
   }
 
   // Remove profile pic in profilepics directory
@@ -63,6 +60,7 @@ if (isset($_POST['acc_del_btn']) && isset($_POST['user'])) {
   // remove user's account row in the table users
   $result2 = mysqli_query($conn, $sql2);
 
+  // logout from current session and redirect to login page
   header("location:logout.php");
 }
 ?>

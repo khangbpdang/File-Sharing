@@ -4,11 +4,13 @@ if(!isset($_SESSION["username"])) {
   header("location:login.html");
 }
 // connect to the database
-$conn = mysqli_connect('127.0.0.1', 'root', 'Overdrive08', 'mytestdb');
+require_once('connect_db.php');
+
 $username = $_SESSION["username"];
+
+// select current user's own files
 $sql = "SELECT * FROM files WHERE username='$username'";
 $result = mysqli_query($conn, $sql);
-
 $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 // Delete file

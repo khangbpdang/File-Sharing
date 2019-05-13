@@ -3,12 +3,17 @@ SESSION_START();
 if(!isset($_SESSION["username"])) {
   header("location:login.html");
 }
-$conn = mysqli_connect('127.0.0.1', 'root', 'Overdrive08', 'mytestdb');
+// connect to database
+require_once('connect_db.php');
+
+// set comment timezone
 date_default_timezone_set('America/New_York');
+
+// Check database connection
 if (mysqli_connect_error()) {
   die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
 } else {
-
+  // Check if data (user's comment and file ID) is sent via post from filepage.php
   if(isset($_POST['user_comm']) && isset($_POST['file_id'])) {
     $comment = mysqli_real_escape_string($conn, stripcslashes(trim($_POST['user_comm'])));
     $name = $_SESSION['username'];
@@ -37,7 +42,7 @@ if (mysqli_connect_error()) {
     <h5><a href="userpage2.php?user='. $name .'">' . $name . '</a></h5>
     <p class="date">'.$timestamp.' </p>
     <p class="comment">
-    '.$comment.'
+    '.htmlspecialchars($comment).'
     </p>
     </div>
     </div>

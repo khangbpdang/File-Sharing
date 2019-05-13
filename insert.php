@@ -1,11 +1,8 @@
 <?php
 SESSION_START();
-$host = "127.0.0.1";
-$dbUsername = "root";
-$dbPassword = "Overdrive08";
-$dbname = "mytestdb";
-//create connection
-$conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
+
+//create connection to database
+require_once('connect_db.php');
 
 // Check connection to database and report errors in case of failure
 if (mysqli_connect_error()) {

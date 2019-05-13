@@ -3,7 +3,7 @@ SESSION_START();
 if(!isset($_SESSION["username"])) {
 	header("location:login.html");
 } else {
-	$conn = mysqli_connect('127.0.0.1', 'root', 'Overdrive08', 'mytestdb');
+	require_once('connect_db.php');
 	if (mysqli_connect_error()) {
 		die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
 	} else {
@@ -31,8 +31,8 @@ if(!isset($_SESSION["username"])) {
 
 		// file
 		$sql = "SELECT * FROM files WHERE username='$visit'";
-	  $result = mysqli_query($conn, $sql);
-	  $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		$result = mysqli_query($conn, $sql);
+		$files = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 		// Search
 		$input = mysqli_real_escape_string($conn, stripcslashes(trim($_GET['search_input'])));
@@ -50,7 +50,7 @@ if(!isset($_SESSION["username"])) {
 			$cond = "(".substr($cond, 0, -4).")";
 			$sql = "SELECT * FROM files WHERE username='$username' AND ".$cond;
 			$result = mysqli_query($conn, $sql);
-		  $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
+			$files = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 		}
 		//echo "Success!" ." | ". mysqli_num_rows($result) ." | ". metaphone($input);
@@ -363,7 +363,6 @@ if(!isset($_SESSION["username"])) {
 		<div class="container box_1170">
 			<div class="row">
 				<div class="col-lg-8 post-list">
-
 					<!-- Start Post Area -->
 					<section class="post-area">
 						<style>
@@ -546,30 +545,26 @@ case "pdf":
 
 <!-- End added post-->
 
-
-
 </div>
 </section>
-<!-- Start Post Area -->
 </div>
 
-
+<!-- User Profile Section-->
 <div class="col-lg-4 sidebar">
-
-
 	<div class="single-widget protfolio-widget">
 		<h4 class="title"> User Profile</h4>
-		<img class="img-fluid" style="display: block; margin-left: auto; margin-right: auto; object-fit: cover; max-width: 298px; max-height: 298px" src=
+		<img class="img-fluid" style="display: block; margin-left: auto; margin-right: auto; object-fit: cover; max-width: 230px; max-height: 230px" src=
 		<?php
+		/*
+		 * Display user's profile picture. A default picture is displayed if user has not uploaded one.
+		*/
 		if (empty($profile['prof_name_hash']) || empty($profile['prof_file_type'])) {
 			echo "img/blog/user3.png";
-	 	} else {
+		} else {
 			echo "profilepics/".basename($profile['prof_name_hash']). '.' . $profile['prof_file_type'];
 		}
-		 ?>
-
-		 alt="">
-
+		?>
+		alt="">
 		<h4 style="text-align:center; padding:25px"><font size="5">
 			<?php
 			echo $visit;
@@ -584,10 +579,14 @@ case "pdf":
 
 	</p>
 	<br>
-
-	<?php if (strcasecmp(trim($visit), $username) != 0) { ?>
-		<!-- everyone besides the user himself should see this button below
-		<h3><button type="submit" name="save" class="myButton">Follow User</button></h3>-->
+	<!-- /Delete Account Button -->
+	<?php
+		/*
+		 * Display a Following or Follow button if the user is visiting another user's profile page. Display an
+		 * Account Delete button otherwise.
+		*/
+		if (strcasecmp(trim($visit), $username) != 0) {
+	?>
 		<form class="form-style" action = "userpage_handler.php" method = "post" enctype="multipart/form-data">
 			<?php if ($num <= 0) {?>
 				<center><h3><button type="submit" name="follow" class="myButton">Follow User</button></h3></center>
@@ -605,9 +604,7 @@ case "pdf":
 			<hr color = "ffffff">
 			<center><h3><button type="submit" name="acc_del_btn" class="myButton" onclick="return confirm('Are you sure you want to delete this account?')">Delete Account</button></h3></center>
 			<input type="hidden" name="user" value="<?php echo $_SESSION['username']; ?>"/>
-
 		</form>
-
 	<?php } ?>
 </div>
 
@@ -618,46 +615,33 @@ case "pdf":
 		<button class="btncust" onclick="filterSelection('audio')"><p class="p1"><img src="img/bullet.png" alt=""> Audio</p></button> <br>
 		<button class="btncust" onclick="filterSelection('documents')"> <p class="p1"><img src="img/bullet.png" alt=""> Documents</p></button> <br>
 		<button class="btncust" onclick="filterSelection('images')"> <p class="p1"><img src="img/bullet.png" alt=""> Images</p></button> <br>
-		
-		<script>
-		// Add active class to the current button (highlight it)
-		var btnContainer = document.getElementById("myBtnContainer");
-		var btns = btnContainer.getElementsByClassName("btncust");
-		for (var i = 0; i < btns.length; i++) {
-			btns[i].addEventListener("click", function(){
-				var current = document.getElementsByClassName("active");
-				current[0].className = current[0].className.replace(" active", "");
-				this.className += " active";
-			});
-		}
-		</script>
 	</div>
 </div>
 <?php if (strcasecmp(trim($visit), $username) == 0) { ?>
-<div class ="single-widget category-widget">
-	<h4 class="title">Upload Profile Picture</h4>
-	<p>1) Select File</p>
-	<br>
-	<form action="userpage2.php" method="post" enctype="multipart/form-data">
-		<div>
+	<div class ="single-widget category-widget">
+		<h4 class="title">Upload Profile Picture</h4>
+		<p>1) Select File</p>
+		<br>
+		<form action="userpage2.php" method="post" enctype="multipart/form-data">
+			<div>
 
-			<input type="file" name="myfile" id="myfile" class="inputfile inputfile-1" accept="image/jpeg, image/png">
-			<label for="myfile" style="color:white"><svg xmlns="http://www.w3.org/2000/svg" color="white" width="20" height="17" viewBox="0 0 20 17"><path stroke"red" d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Choose a file &hellip;</span></label>
-
-
-			<script src="js/custom-file-input.js"></script>
-			<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+				<input type="file" name="myfile" id="myfile" class="inputfile inputfile-1" accept="image/jpeg, image/png">
+				<label for="myfile" style="color:white"><svg xmlns="http://www.w3.org/2000/svg" color="white" width="20" height="17" viewBox="0 0 20 17"><path stroke"red" d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Choose a file &hellip;</span></label>
 
 
-			<br>
-			<br>
-			<p>2) Upload Picture</p>
-			<br>
-			<input type="hidden" name="MAX_FILE_SIZE" value="100000" />
-			<h3><button type="submit" name="profile" class="myButton">Upload Profile Picture</button></h3>
-		</div>
-	</form>
-</div>
+				<script src="js/custom-file-input.js"></script>
+				<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+
+
+				<br>
+				<br>
+				<p>2) Upload Picture</p>
+				<br>
+				<input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+				<h3><button type="submit" name="profile" class="myButton">Upload Profile Picture</button></h3>
+			</div>
+		</form>
+	</div>
 <?php }?>
 
 
@@ -696,47 +680,8 @@ case "pdf":
 	</div>
 </footer>
 <!-- End footer Area -->
-<script>
-filterSelection("all")
-function filterSelection(c) {
-	var x, i;
-	x = document.getElementsByClassName("column");
-	if (c == "all") {
-		c = "";
-	}
-	for (i = 0; i < x.length; i++) {
-		w3RemoveClass(x[i], "show");
-		if (x[i].className.indexOf(c) > -1) {
-			w3AddClass(x[i], "show");
-		}
-	}
-}
-
-function w3AddClass(element, name) {
-	var i, arr1, arr2;
-	arr1 = element.className.split(" ");
-	arr2 = name.split(" ");
-	for (i = 0; i < arr2.length; i++) {
-		if (arr1.indexOf(arr2[i]) == -1) {
-			element.className += " " + arr2[i];
-		}
-	}
-}
-
-function w3RemoveClass(element, name) {
-	var i, arr1, arr2;
-	arr1 = element.className.split(" ");
-	arr2 = name.split(" ");
-	for (i = 0; i < arr2.length; i++) {
-		while (arr1.indexOf(arr2[i]) > -1) {
-			arr1.splice(arr1.indexOf(arr2[i]), 1);
-		}
-	}
-	element.className = arr1.join(" ");
-}
-</script>
-
-<script src="js/vendor/jquery-2.2.4.min.js"></script>
+<script src="js/filter.js"></script>
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 crossorigin="anonymous"></script>
 <script src="js/vendor/bootstrap.min.js"></script>

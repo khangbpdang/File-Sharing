@@ -4,7 +4,7 @@ if(!isset($_SESSION["username"])) {
   header("location:login.html");
 }
 $username = $_SESSION["username"];
-$conn = mysqli_connect('127.0.0.1', 'root', 'Overdrive08', 'mytestdb');
+require_once('connect_db.php');
 if (mysqli_connect_error()) {
   die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
 } else {
