@@ -461,7 +461,7 @@ if (mysqli_connect_error()) {
 
 
 <script src="js/filter.js"></script>
-<script src="js/vendor/jquery-2.2.4.min.js"></script>
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 crossorigin="anonymous"></script>
 <script src="js/vendor/bootstrap.min.js"></script>
