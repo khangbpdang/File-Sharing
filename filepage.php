@@ -34,7 +34,7 @@ if(!isset($_SESSION["username"])) {
 		$res = mysqli_query($conn, $q);
 		$profile = mysqli_fetch_assoc($res);
 
-		// Comment
+		// Comment query and fetch according to file id
 		$comment_query = "SELECT * FROM (SELECT
 			comment.*, users.prof_name_hash, users.prof_file_type
 			FROM (SELECT username FROM comment UNION
