@@ -29,12 +29,12 @@ if(!isset($_SESSION["username"])) {
 			$profile = mysqli_fetch_assoc($res);
 		}
 
-		// file
+		// file of user of the profile page
 		$sql = "SELECT * FROM files WHERE username='$visit'";
 		$result = mysqli_query($conn, $sql);
 		$files = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-		// Search
+		// Search query and fetch files accordingly
 		$input = mysqli_real_escape_string($conn, stripcslashes(trim($_GET['search_input'])));
 		if ($input !== '') {
 			$query = preg_split('/\s+/', $input, -1, PREG_SPLIT_NO_EMPTY);
@@ -53,21 +53,14 @@ if(!isset($_SESSION["username"])) {
 			$files = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 		}
-		//echo "Success!" ." | ". mysqli_num_rows($result) ." | ". metaphone($input);
-		//else {
-		//	$sql = "SELECT * FROM files WHERE username='$username'";
-		//}
-
 
 		// Check followership of current user and the uploader of the file
 		$query = "SELECT * FROM follow WHERE sender_id = '$username' AND receiver_id = '$visit'";
 		$res2 = mysqli_query($conn, $query);
 		$num = mysqli_num_rows($res2);
 
+		// Set timezone
 		date_default_timezone_set('America/New_York');
-
-
-
 	}
 }
 ?>
@@ -296,13 +289,6 @@ if(!isset($_SESSION["username"])) {
 		position:relative;
 		top:1px;
 	}
-
-
-
-
-
-
-
 </style>
 
 
@@ -617,6 +603,8 @@ case "pdf":
 		<button class="btncust" onclick="filterSelection('images')"> <p class="p1"><img src="img/bullet.png" alt=""> Images</p></button> <br>
 	</div>
 </div>
+
+<!-- Profile Picture Upload-->
 <?php if (strcasecmp(trim($visit), $username) == 0) { ?>
 	<div class ="single-widget category-widget">
 		<h4 class="title">Upload Profile Picture</h4>
