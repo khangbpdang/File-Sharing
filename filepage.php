@@ -6,8 +6,11 @@ if(!isset($_SESSION["username"])) {
 	// connect to database
 	require_once('connect_db.php');
 
+	// get current username and file id
 	$session_name = $_SESSION["username"];
 	$fileid = $_GET['id'];
+
+	// database query to retrieve all files based on passed in file id in URL
 	$statement = "SELECT * FROM files WHERE file_id=$fileid";
 
 	if (mysqli_connect_error()) {
