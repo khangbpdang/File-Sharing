@@ -6,7 +6,7 @@ This website serves as a common ground for showcasing users' files. Currently su
 # Database Setup
 ## Table creation
 ### Create user management table
-```
+```mysql
 CREATE TABLE users (
 	username varchar(50) NOT NULL PRIMARY KEY,
 	password varchar(50) NOT NULL,
