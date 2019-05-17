@@ -157,7 +157,7 @@ case "png":
 case "txt":
 	<div class="column documents col-lg-6 col-md-6">
 ```
-The _PNG_ file post will have **images** as a part of its class name while the _TXT_ file post will have **documents**. The reason for that is due to the codes below
+The _PNG_ file post will have **images** as a part of its class name while the _TXT_ file post will have **documents**. The reason for that is due to the codes below which is available in those aforementioned files.
 
 ```html
 <h4 class="title">Post Categories</h4>
