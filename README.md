@@ -4,7 +4,7 @@
 This website serves as a common ground for showcasing users' files. Currently supported file formats are PDF, PNG, JPG, TXT, DOCX and MP3.
 
 ## Project Specifications and Setup
-1. Languages: 
+1. **Languages:** 
    - Backend: 
      - PHP 7.0 or above: 
        - For Ubuntu: https://www.vultr.com/docs/configure-php-7-2-on-ubuntu-18-04
@@ -13,15 +13,14 @@ This website serves as a common ground for showcasing users' files. Currently su
      - MySQL:
        - For Ubuntu: https://support.rackspace.com/how-to/installing-mysql-server-on-ubuntu/
        - For Debian: https://www.digitalocean.com/community/tutorials/how-to-install-the-latest-mysql-on-debian-9
-       - For MacOS:  https://tableplus.io/blog/2018/11/how-to-download-mysql-mac.html
-     
+       - For MacOS:  https://tableplus.io/blog/2018/11/how-to-download-mysql-mac.html  
    - Frontend: CSS, HTML5, JavaScript.
    
-2. Tested OS environment
+2. **Tested OS environment:**
    - Linux: Debian 9 or above, Ubuntu 18 or above.
    - MacOS: Mojave.
    
-3. Web server
+3. **Web server:**
    - Apache web server: https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-debian-9   
    
    
