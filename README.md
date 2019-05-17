@@ -145,6 +145,13 @@ foreach ($files as $file):
 
 3. **Filtering files in homepage_2.php, following.php, userpage2.php**
 Each page has a filter section that utilize JQuery in order to filter files according their respective categories. Currently, there are 4 categories: All, Audio (MP3), Documents (TXT, DOCX, PDF), and Images (JPG, PNG).
+
+Each post of a certain file type will have an _HTML_ class name associated to it which corresponds to the category. For example,
+```html
+case "png":
+	<div class="column **images** col-lg-6 col-md-6">
+```
+Alter the following codes for added filter category on web page:
 ```html
 <h4 class="title">Post Categories</h4>
 		<div id="myBtnContainer">
@@ -152,7 +159,6 @@ Each page has a filter section that utilize JQuery in order to filter files acco
 			<button class="btncust" onclick="filterSelection('audio')"><p class="p1"><img src="img/bullet.png" alt=""> Audio</p></button> <br>
 			<button class="btncust" onclick="filterSelection('documents')"> <p class="p1"><img src="img/bullet.png" alt=""> Documents</p></button> <br>
 			<button class="btncust" onclick="filterSelection('images')"> <p class="p1"><img src="img/bullet.png" alt=""> Images</p></button> <br>
-			<!--<button class="btncust" onclick="filterSelection('pdf')"> <p class="p1"><img src="img/bullet.png" alt=""> PDF</p></button> <br>-->
 
 		</div>
 ```
