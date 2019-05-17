@@ -53,7 +53,7 @@ CREATE TABLE comment (
 );
 ```
 
-## SELECT queries for various page (also available in the file themselves)
+## SELECT queries for various pages (also available in the file themselves)
 ### Select comments for filepage.php
 ```mysql
 SELECT * FROM (select 
