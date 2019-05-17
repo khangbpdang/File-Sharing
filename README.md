@@ -4,6 +4,7 @@
 This website serves as a common ground for showcasing users' files. Currently supported file formats are PDF, PNG, JPG, TXT, DOCX and MP3.
 
 # Database Setup
+## Table creation
 ### Create user management table
 CREATE TABLE users (
 	username varchar(50) NOT NULL PRIMARY KEY,
@@ -36,7 +37,7 @@ CREATE TABLE follow (
 	receiver_id VARCHAR(50) NOT NULL
 );
 
-### create comment section
+### Create comment section
 CREATE TABLE comment (
 	comment_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	username VARCHAR(50) NOT NULL,
@@ -45,6 +46,7 @@ CREATE TABLE comment (
 	file_id INT(6) UNSIGNED NOT NULL
 );
 
+## SELECT queries for various page (also available in the file themselves)
 ### Select comments for filepage.php
 ```
 SELECT * FROM (select 
@@ -82,7 +84,16 @@ SELECT * FROM (SELECT users.* from (SELECT receiver_id FROM follow WHERE sender_
 
 
 
-### Server permissions for directory upload. User group and name for the web server will depend on the OS. This following code should work for Ubuntu and Debian.
+### Server permissions for directory upload. User group and name for the web server will depend on the OS. This following code should work for Ubuntu and Debian. 
 ```
 chown -R www-data:www-data <insert directory name>
+```
+### In addition, make sure to check php.ini on the server and configure these settings appropriately to enable file upload via PHP
+```
+    file_uploads
+    upload_max_filesize
+    max_input_time
+    memory_limit
+    max_execution_time
+    post_max_size
 ```
