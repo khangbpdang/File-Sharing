@@ -18,7 +18,7 @@ CREATE TABLE users (
 ```
 
 ### Create file management table
-```
+```mysql
 CREATE TABLE files (
 	file_id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	file_hash VARCHAR(50) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE files (
 ```
 
 ### Create followers table
-```
+```mysql
 CREATE TABLE follow (
 	follow_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	sender_id VARCHAR(50) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE follow (
 ```
 
 ### Create comment section
-```
+```mysql
 CREATE TABLE comment (
 	comment_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	username VARCHAR(50) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE comment (
 
 ## SELECT queries for various page (also available in the file themselves)
 ### Select comments for filepage.php
-```
+```mysql
 SELECT * FROM (select 
     comment.*, users.prof_name_hash, users.prof_file_type
 from (SELECT username FROM comment UNION 
@@ -69,7 +69,7 @@ from (SELECT username FROM comment UNION
 ```
 
 ### Select files for following.php | receiver_id
-```
+```mysql
 SELECT * FROM (SELECT files.*, follow.sender_id from (SELECT receiver_id FROM follow where sender_id ='<insert variable>') n 
 	LEFT JOIN 
 	follow 
@@ -79,7 +79,7 @@ SELECT * FROM (SELECT files.*, follow.sender_id from (SELECT receiver_id FROM fo
 ```
 
 ### Select follow for following.php
-```
+```mysql
 SELECT * FROM (SELECT users.* from (SELECT receiver_id FROM follow WHERE sender_id = '<insert variable>') n 
 	LEFT JOIN
 	users
@@ -95,7 +95,7 @@ SELECT * FROM (SELECT users.* from (SELECT receiver_id FROM follow WHERE sender_
 chown -R www-data:www-data <insert directory name>
 ```
 ### In addition, make sure to check php.ini on the server and configure these settings appropriately to enable file upload via PHP
-```
+```ini
     file_uploads
     upload_max_filesize
     max_input_time
