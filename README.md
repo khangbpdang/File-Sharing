@@ -3,9 +3,9 @@
 
 This website serves as a common ground for showcasing users' files. Currently supported file formats are PDF, PNG, JPG, TXT, DOCX and MP3.
 
-# Database Setup
-## Table creation
-### Create user management table
+## Database Setup
+#### Table creation
+##### Create user management table
 ```mysql
 CREATE TABLE users (
 	username varchar(50) NOT NULL PRIMARY KEY,
@@ -17,7 +17,7 @@ CREATE TABLE users (
 );
 ```
 
-### Create file management table
+##### Create file management table
 ```mysql
 CREATE TABLE files (
 	file_id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -33,7 +33,7 @@ CREATE TABLE files (
 );
 ```
 
-### Create followers table
+##### Create followers table
 ```mysql
 CREATE TABLE follow (
 	follow_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -42,7 +42,7 @@ CREATE TABLE follow (
 );
 ```
 
-### Create comment section
+##### Create comment section
 ```mysql
 CREATE TABLE comment (
 	comment_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -53,8 +53,8 @@ CREATE TABLE comment (
 );
 ```
 
-## SELECT queries for various pages (also available in the file themselves)
-### Select comments for filepage.php
+#### SELECT queries for various pages (also available in the file themselves)
+##### Select comments for filepage.php
 ```mysql
 SELECT * FROM (select 
     comment.*, users.prof_name_hash, users.prof_file_type
@@ -68,7 +68,7 @@ from (SELECT username FROM comment UNION
      ON users.username = n.username) m where file_id = <insert variable>;
 ```
 
-### Select files for following.php | receiver_id
+##### Select files for following.php | receiver_id
 ```mysql
 SELECT * FROM (SELECT files.*, follow.sender_id from (SELECT receiver_id FROM follow where sender_id ='<insert variable>') n 
 	LEFT JOIN 
@@ -78,7 +78,7 @@ SELECT * FROM (SELECT files.*, follow.sender_id from (SELECT receiver_id FROM fo
 	ON files.username = n.receiver_id) m ORDER BY dt_uploaded DESC;
 ```
 
-### Select follow for following.php
+##### Select follow for following.php
 ```mysql
 SELECT * FROM (SELECT users.* from (SELECT receiver_id FROM follow WHERE sender_id = '<insert variable>') n 
 	LEFT JOIN
@@ -89,13 +89,14 @@ SELECT * FROM (SELECT users.* from (SELECT receiver_id FROM follow WHERE sender_
 	ON follow.receiver_id = n.receiver_id AND follow.sender_id = '<insert variable>') m;
 ```
 
-## Server configurations
-### Server permissions for directory upload. User group and name for the web server will depend on the OS. This following code should work for Ubuntu and Debian. 
+
+#### Server configurations
+##### Server permissions for directory upload. User group and name for the web server will depend on the OS. This following code should work for Ubuntu and Debian. 
 ```shell
 chown -R www-data:www-data <insert directory name>
 ```
 
-### In addition, make sure to check php.ini on the server and configure these settings appropriately to enable file upload via PHP
+##### In addition, make sure to check php.ini on the server and configure these settings appropriately to enable file upload via PHP
 ```ini
 file_uploads
 upload_max_filesize
