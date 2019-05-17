@@ -91,15 +91,16 @@ SELECT * FROM (SELECT users.* from (SELECT receiver_id FROM follow WHERE sender_
 
 ## Server configurations
 ### Server permissions for directory upload. User group and name for the web server will depend on the OS. This following code should work for Ubuntu and Debian. 
-```
+```shell
 chown -R www-data:www-data <insert directory name>
 ```
+
 ### In addition, make sure to check php.ini on the server and configure these settings appropriately to enable file upload via PHP
 ```ini
-    file_uploads
-    upload_max_filesize
-    max_input_time
-    memory_limit
-    max_execution_time
-    post_max_size
+file_uploads
+upload_max_filesize
+max_input_time
+memory_limit
+max_execution_time
+post_max_size
 ```
