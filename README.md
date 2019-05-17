@@ -90,7 +90,7 @@ SELECT * FROM (SELECT users.* from (SELECT receiver_id FROM follow WHERE sender_
 ```
 
 
-#### Server configurations
+## Server configurations
 ##### Server permissions for directory upload. User group and name for the web server will depend on the OS. This following code should work for Ubuntu and Debian. 
 ```shell
 chown -R www-data:www-data <insert directory name>
