@@ -14,7 +14,7 @@ This website serves as a common ground for showcasing users' files. Currently su
        - For Ubuntu: https://support.rackspace.com/how-to/installing-mysql-server-on-ubuntu/
        - For Debian: https://www.digitalocean.com/community/tutorials/how-to-install-the-latest-mysql-on-debian-9
        - For MacOS:  https://tableplus.io/blog/2018/11/how-to-download-mysql-mac.html  
-   - Frontend: CSS, HTML5, JavaScript.
+   - Frontend: CSS, HTML5, JavaScript, Bootstrap.
    
 2. **Tested OS environment:**
    - Linux: Debian 9 or above, Ubuntu 18 or above.
