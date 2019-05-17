@@ -89,8 +89,7 @@ SELECT * FROM (SELECT users.* from (SELECT receiver_id FROM follow WHERE sender_
 	ON follow.receiver_id = n.receiver_id AND follow.sender_id = '<insert variable>') m;
 ```
 
-
-
+## Server configurations
 ### Server permissions for directory upload. User group and name for the web server will depend on the OS. This following code should work for Ubuntu and Debian. 
 ```
 chown -R www-data:www-data <insert directory name>
