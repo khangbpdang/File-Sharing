@@ -7,9 +7,9 @@ This website serves as a common ground for showcasing users' files. Currently su
 1. Languages: 
    - Backend: 
      - PHP 7.0 or above: 
-     For Ubuntu: https://www.vultr.com/docs/configure-php-7-2-on-ubuntu-18-04
-     For Debian: https://www.rosehosting.com/blog/how-to-install-php-7-2-on-debian-9/
-     For MacOS:  https://tecadmin.net/install-php-macos/
+       - For Ubuntu: https://www.vultr.com/docs/configure-php-7-2-on-ubuntu-18-04
+       - For Debian: https://www.rosehosting.com/blog/how-to-install-php-7-2-on-debian-9/
+       - For MacOS:  https://tecadmin.net/install-php-macos/
      - MySQL:
    - Frontend: CSS, HTML5, JavaScript.
 2. Tested OS environment
