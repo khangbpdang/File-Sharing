@@ -129,7 +129,30 @@ post_max_size
 
 ## File Support
 #### Adding support for more file types
-Alter codes in filesLogic.php, particularly this line of code
+1. **Altering codes in filesLogic.php, particularly this line of code to allow for additional file type to be uploaded onto the server**
+**_BE CAREFUL_** and think hard about what kind of file should be allowed to be uploaded onto the server though.
 ```php
 !in_array($extension, ['txt', 'jpg', 'png', 'mp3', 'pdf', 'docx'])
+```
+
+2. **Adding file posts display in homepage_2.php, following.php, userpage2.php, filepage.php**
+Each of these file spawn file posts in a **foreach** statement with a **switch** statement for the file type similar to what is shown below. Just add another ```php case "<insert file type>"``` for the added file type(s).
+```php
+foreach ($files as $file):
+	switch($file['file_type']):
+		case "docx":
+```
+
+3. **Filtering files in homepage_2.php, following.php, userpage2.php**
+Each page has a filter section that utilize JQuery in order to filter files according their respective categories. Currently, there are 4 categories: All, Audio (MP3), Documents (TXT, DOCX, PDF), and Images (JPG, PNG).
+```html
+<h4 class="title">Post Categories</h4>
+		<div id="myBtnContainer">
+			<button class="btncust active" onclick="filterSelection('all')"> <p class="p1"><img src="img/bullet.png" alt=""> All</p></button> <br>
+			<button class="btncust" onclick="filterSelection('audio')"><p class="p1"><img src="img/bullet.png" alt=""> Audio</p></button> <br>
+			<button class="btncust" onclick="filterSelection('documents')"> <p class="p1"><img src="img/bullet.png" alt=""> Documents</p></button> <br>
+			<button class="btncust" onclick="filterSelection('images')"> <p class="p1"><img src="img/bullet.png" alt=""> Images</p></button> <br>
+			<!--<button class="btncust" onclick="filterSelection('pdf')"> <p class="p1"><img src="img/bullet.png" alt=""> PDF</p></button> <br>-->
+
+		</div>
 ```
