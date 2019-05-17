@@ -3,6 +3,22 @@
 
 This website serves as a common ground for showcasing users' files. Currently supported file formats are PDF, PNG, JPG, TXT, DOCX and MP3.
 
+## Project Specifications and Setup
+1. Languages: 
+   - Backend: 
+     - PHP 7.0 or above: 
+     For Ubuntu: https://www.vultr.com/docs/configure-php-7-2-on-ubuntu-18-04
+     For Debian: https://www.rosehosting.com/blog/how-to-install-php-7-2-on-debian-9/
+     For MacOS:  https://tecadmin.net/install-php-macos/
+     - MySQL:
+   - Frontend: CSS, HTML5, JavaScript.
+2. Tested OS environment
+   - Linux: Debian 9 or above, Ubuntu 18 or above.
+   - MacOS: Mojave.
+3. Web server
+   - Apache web server: https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-debian-9   
+   
+   
 ## Database Setup
 #### Table creation
 ##### Create user management table
