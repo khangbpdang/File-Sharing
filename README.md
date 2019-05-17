@@ -6,6 +6,7 @@ This website serves as a common ground for showcasing users' files. Currently su
 # Database Setup
 ## Table creation
 ### Create user management table
+```
 CREATE TABLE users (
 	username varchar(50) NOT NULL PRIMARY KEY,
 	password varchar(50) NOT NULL,
@@ -14,9 +15,10 @@ CREATE TABLE users (
 	prof_name_hash VARCHAR(50), 
 	prof_file_type VARCHAR(10)
 );
-
+```
 
 ### Create file management table
+```
 CREATE TABLE files (
 	file_id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	file_hash VARCHAR(50) NOT NULL,
@@ -29,15 +31,19 @@ CREATE TABLE files (
 	downloads INT UNSIGNED,
 	filesound VARCHAR(5000) NOT NULL
 );
+```
 
 ### Create followers table
+```
 CREATE TABLE follow (
 	follow_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	sender_id VARCHAR(50) NOT NULL,
 	receiver_id VARCHAR(50) NOT NULL
 );
+```
 
 ### Create comment section
+```
 CREATE TABLE comment (
 	comment_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	username VARCHAR(50) NOT NULL,
@@ -45,6 +51,7 @@ CREATE TABLE comment (
 	comment_dt DATETIME NOT NULL,
 	file_id INT(6) UNSIGNED NOT NULL
 );
+```
 
 ## SELECT queries for various page (also available in the file themselves)
 ### Select comments for filepage.php
