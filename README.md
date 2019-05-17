@@ -1,7 +1,7 @@
 # Interactive File Sharing Website
 ### Contributed by Nurul Haque, Khang Dang and Lawrence DeAngelo
 
-This website serves as a hub for showcasing individual users' files. Currently supported file formats are PDF, PNG, JPG, TXT, DOCX and MP3, but it can be expanded by changes various settings in filesLogic.php
+This website serves as a hub for showcasing individual users' files. Currently supported file formats are PDF, PNG, JPG, TXT, DOCX and MP3, but it can be expanded by changes various settings.
 
 ## Project Specifications and Setup
 1. **Languages:** 
@@ -111,7 +111,7 @@ SELECT * FROM (SELECT users.* from (SELECT receiver_id FROM follow WHERE sender_
 ```
 
 
-## Server configurations
+## Server Configurations
 #### Server permissions for directory upload. User group and name for the web server will depend on the OS. This following code should work for Ubuntu and Debian. 
 ```shell
 chown -R www-data:www-data <insert directory name>
@@ -125,4 +125,11 @@ max_input_time
 memory_limit
 max_execution_time
 post_max_size
+```
+
+## File Support
+#### Adding support for more file types
+Alter codes in filesLogic.php, particularly this line of code
+```php
+!in_array($extension, ['txt', 'jpg', 'png', 'mp3', 'pdf', 'docx'])
 ```
